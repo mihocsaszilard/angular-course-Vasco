@@ -1,9 +1,9 @@
-<p>This is in course-card.component.html</p>
-
+<!--<p>This is in course-card.component.html</p>
+-->
 <div class="course-card">
 
     <div class="course-title">
-       {{course.description}}
+       {{ cardIndex + '. ' + course.description}}
     </div>
     <img width="300" alt="Angular Logo"
          [src]="course.iconUrl">
@@ -11,5 +11,7 @@
     <div class="course-description">
         {{course.longDescription}}
     </div>
+
+    <button (click)="onCourseViewed()">View course </button>
 
 </div>
