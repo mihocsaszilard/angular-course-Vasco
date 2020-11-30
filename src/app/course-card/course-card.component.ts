@@ -22,10 +22,36 @@ export class CourseCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isImgVisible(){
+    return this.course && this.course.iconUrl;
+  }
+
   onCourseViewed(){
     console.log("card component - button clicked...");
     
     this.courseSelected.emit(this.course);
   }
 
+  cardClasses(){
+
+      if(this.course.category == 'BEGINNER'){
+          return ['beginner'];
+      }
+
+    }
+   // return{
+   //   'beginner' :this.course.category == 'BEGINNER',
+   // }
+  
+   cardStyles() {
+     return {
+      'text-decoration': 'underline'};
+  }
+
+  cardBackgrnd() {
+    return {
+      'background-image': 'url(' + this.course.iconUrl + ')',
+      'color': 'white'
+    };
+  }
 }

@@ -1,15 +1,47 @@
 <!--<p>This is in course-card.component.html</p>
 -->
-<div class="course-card">
+<div class="course-card" *ngIf="course" 
+     [ngClass]="cardClasses()"
+     [ngStyle]="cardBackgrnd()">  
+<!--ngIf  ellenorzi a course objectumot 
+es ha nem elerheto akkor elrejti minden
+ tulajdonsagat
 
-    <div class="course-title">
+ ngClass recommended use: add or remove styles
+-->
+<!--  <div class="course-title" [style.text-decoration]="'underline'"> 
+        -mindegyik cimre alkalmazza a text-decorations-t
+--> 
+<!--
+<div class="course-title" [ngStyle]="{'text-decoration':'underline'}"> 
+helyileg alkalmazza a valtoztatast
+
+-->
+    <div class="course-title" [ngStyle]="cardStyles()">
+        <!--meghivunk egy funktion-t ait a .ts- ben hoztunk letre--> 
        {{ cardIndex + '. ' + course.description}}
     </div>
-    <img width="300" alt="Angular Logo"
+   <!--
+    <img width="300" alt="Angular Logo" *ngIf="isImgVisible(); else noImg"
          [src]="course.iconUrl">
-
+        <ng-template #noImg>
+            <img src="https://static.thenounproject.com/png/583402-200.png"
+                 alt="No image is available!"
+                 width="100px">                 
+        </ng-template>
+   -->
+   
+         
     <div class="course-description">
         {{course.longDescription}}
+    </div>
+
+    <div class="course-category" [ngSwitch]="course.category">
+        <div class="category" *ngSwitchCase="'BEGINNER'" >Beginner</div>
+        <div class="category" *ngSwitchCase="'INTERMEDIATE'" >Intermediate</div>
+        <div class="category" *ngSwitchCase="'ADVANCED'" >Advanced</div>  
+        <div class="category" *ngSwitchDefault>All levels</div>  
+   
     </div>
 
     <button (click)="onCourseViewed()">View course </button>
